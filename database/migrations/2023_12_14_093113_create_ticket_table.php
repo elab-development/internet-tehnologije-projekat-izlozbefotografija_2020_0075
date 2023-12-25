@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ticket', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+        Schema::create('tickets', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('exhibition_id');
-            $table->primary(array('id', 'user_id', 'exhibition_id'));          
+            // $table->primary(array('id', 'user_id', 'exhibition_id'));          
             $table->date('date');
             $table->unsignedInteger('person_count');
             $table->timestamps();
+            $table->unique(['id', 'user_id', 'exhibition_id']);
             
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ticket');
+        Schema::dropIfExists('tickets');
     }
 };

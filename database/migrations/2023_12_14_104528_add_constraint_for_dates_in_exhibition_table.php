@@ -12,8 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('exhibition', function (Blueprint $table) {
-            DB::statement('ALTER TABLE exhibition ADD CONSTRAINT check_dates CHECK (start_date<end_date)');
+        Schema::table('exhibitions', function (Blueprint $table) {
+            DB::statement('ALTER TABLE exhibitions ADD CONSTRAINT check_dates CHECK (start_date<end_date)');
         });
     }
 
@@ -22,8 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('exhibition', function (Blueprint $table) {
-            DB::statement('ALTER TABLE exhibition DROP CONSTRAINT check_dates');
+        Schema::table('exhibitions', function (Blueprint $table) {
+            DB::statement('ALTER TABLE exhibitions DROP CONSTRAINT check_dates');
         });
     }
 };
