@@ -12,8 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('exhibition', function (Blueprint $table) {
-            DB::statement('ALTER TABLE exhibition CHANGE COLUMN title name VARCHAR(255)');
+        Schema::table('exhibitions', function (Blueprint $table) {
+            DB::statement('ALTER TABLE exhibitions CHANGE COLUMN title name VARCHAR(255)');
         });
     }
 
@@ -22,8 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('exhibition', function (Blueprint $table) {
-            DB::statement('ALTER TABLE exhibition CHANGE COLUMN name title VARCHAR(255)');
+        Schema::table('exhibitions', function (Blueprint $table) {
+            DB::statement('ALTER TABLE exhibitions CHANGE COLUMN name title VARCHAR(255)');
         });
     }
 };

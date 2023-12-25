@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('showing', function (Blueprint $table) {
-            $table->foreign('artwork_id')->references('id')->on('artwork');
-            $table->foreign('exhibition_id')->references('id')->on('exhibition');
+        Schema::table('showings', function (Blueprint $table) {
+            $table->foreign('artwork_id')->references('id')->on('artworks');
+            $table->foreign('exhibition_id')->references('id')->on('exhibitions');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('showing', function (Blueprint $table) {
+        Schema::table('showings', function (Blueprint $table) {
             $table->dropForeign(['artwork_id']);
             $table->dropForeign(['exhibition_id']);
         });

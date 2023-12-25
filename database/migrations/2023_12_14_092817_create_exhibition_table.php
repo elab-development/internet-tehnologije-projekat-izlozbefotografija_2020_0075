@@ -12,9 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exhibition', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
-            $table->primary('id');
+        Schema::create('exhibitions', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            // $table->primary('id');
             $table->string('title');
             $table->date('start_date');
             $table->date('end_date');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exhibition');
+        Schema::dropIfExists('exhibitions');
     }
 };
