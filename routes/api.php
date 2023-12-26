@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 
-Route::resource('exhibitions', ExhibitionController::class);
+Route::resource('exhibitions', ExhibitionController::class)->only(['index', 'show']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -36,11 +36,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         return auth()->user();
     });
 
-    // API route for logout user
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
-Route::post('/newsletter', [NewsletterController::class, 'store']);
-Route::delete('/newsletter/{id}', [NewsletterController::class, 'destroy']);
+Route::post('/newsletters', [NewsletterController::class, 'store']);
 
-Route::get('/exibitions/{id}/artworks', [ExhibitionArtworkController::class, 'index']);
+Route::get('/exhibitions/{id}/artworks', [ExhibitionArtworkController::class, 'index']);
+
+Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
+    Route::resource('exhibitions', ExhibitionController::class)->only(['update','store','destroy']);
+    Route::delete('/newsletters/{id}', [NewsletterController::class, 'destroy']);
+});
