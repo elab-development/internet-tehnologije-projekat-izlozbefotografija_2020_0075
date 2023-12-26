@@ -21,8 +21,8 @@ class ExhibitionFactory extends Factory
 
         return [
             'name' => fake()->name(),
-            'start_date' => fake()->date(),
-            'end_date' => fake()->date(),
+            'start_date' => $startDate,
+            'end_date' => $endDate,
         ];
     }
 }
