@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ExhibitionCollection;
 use App\Http\Resources\ExhibitionResource;
 use App\Models\Exhibition;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ExhibitionController extends Controller
@@ -31,7 +32,22 @@ class ExhibitionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            "name"=>"required|string|max:255",
+            "start_date"=>"required|date",
+            "end_date"=>"required|date",
+        ]);
+        
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
+
+        $exhibition = Exhibition::create([
+            "name"=>$request->name,
+            "start_date"=>$request->start_date,
+            "end_date"=>$request->end_date,
+        ]);
+        return response()->json(['Exhibition created successfully', new ExhibitionResource($exhibition)]);
     }
 
     /**
@@ -55,14 +71,37 @@ class ExhibitionController extends Controller
      */
     public function update(Request $request, Exhibition $exhibition)
     {
-        //
-    }
+        // Validacija
+        $validator = Validator::make($request->all(), [
+            "name" => "string|max:255",
+            "start_date" => "date",
+            "end_date" => "date|after_or_equal:start_date",
+        ]);
+
+        // Provera da li je validacija neuspešna
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
+        // Ažuriranje podataka
+        $exhibition->name = $request->name;
+       // $exhibition->name = $request->input('name', $exhibition->name); // Ako nije poslat 'name', zadržava postojeću vrednost
+        $exhibition->start_date = $request->input('start_date', $exhibition->start_date);
+        $exhibition->end_date = $request->input('end_date', $exhibition->end_date);
+
+        // Čuvanje izmena
+        $exhibition->save();
+
+        // Vraćanje odgovora
+        return response()->json(['message' => 'Exhibition updated successfully', 'data' => new ExhibitionResource($exhibition)]);
+        }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Exhibition $exhibition)
     {
-        //
+        $exhibition->delete();
+        return response()->json("Exhibition deleted successfully!");
     }
 }

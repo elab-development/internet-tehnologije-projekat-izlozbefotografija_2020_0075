@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\ExhibitionArtworkController;
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\UserController;
@@ -25,8 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 
-Route::get('/exhibitions/{id}', [ExhibitionController::class, 'show']);
-Route::get('/exhibitions', [ExhibitionController::class, 'index']);
+Route::resource('exhibitions', ExhibitionController::class);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -41,3 +41,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 Route::post('/newsletter', [NewsletterController::class, 'store']);
+Route::delete('/newsletter/{id}', [NewsletterController::class, 'destroy']);
+
+Route::get('/exibitions/{id}/artworks', [ExhibitionArtworkController::class, 'index']);

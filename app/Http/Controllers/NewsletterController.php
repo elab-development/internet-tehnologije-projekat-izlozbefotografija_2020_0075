@@ -78,8 +78,16 @@ class NewsletterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Newsletter $newsletter)
+    public function destroy($id)
     {
-        //
+        $newsletter = Newsletter::find($id);
+ 
+        if (is_null($newsletter)) {
+            
+            return response()->json('Data not found', 404);
+            
+        } 
+            $newsletter->delete();
+            return response()->json(['message' => "Newsletter user successfully deleted!", 'data' => $newsletter]);
     }
 }
