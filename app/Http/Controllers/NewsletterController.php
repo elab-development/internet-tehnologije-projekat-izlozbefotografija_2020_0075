@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Newsletter;
 use Dotenv\Exception\ValidationException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class NewsletterController extends Controller
@@ -41,12 +42,12 @@ class NewsletterController extends Controller
             ]);
 
             return response()->json(['message' => "Uspešno ste se prijavili na Newsletter.", 'data' => $newsletter]);
-        } catch (ValidationException $e) {
-            /*
-            if ($e->validator->errors()->has('email')) {
-                return response()->json(['error' => "Korisnik sa ovom email adresom je već prijavljen."], 422);
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1062) {
+                return response()->json(['error' => "Korisnik je već prijavljen."], 422);
+            } else {
+                return response()->json(['error' => "Došlo je do greške."], 500);
             }
-            */
         }
     }
 

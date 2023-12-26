@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ExhibitionCollection;
 use App\Http\Resources\ExhibitionResource;
 use App\Models\Exhibition;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class ExhibitionController extends Controller
     public function index()
     {
         $exhibitions = Exhibition::all();
-        return ExhibitionResource::collection($exhibitions);
+        return new ExhibitionCollection($exhibitions);
     }
 
     /**
