@@ -47,3 +47,5 @@ Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
     Route::resource('exhibitions', ExhibitionController::class)->only(['update','store','destroy']);
     Route::delete('/newsletters/{id}', [NewsletterController::class, 'destroy']);
 });
+
+Route::post('forgot/password',[AuthController::class,'forgotPassword']);

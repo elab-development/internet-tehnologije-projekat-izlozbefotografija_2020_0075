@@ -56,4 +56,25 @@ class AuthController extends Controller
        $request->user()->tokens()->delete();
        return response()->json(['message'=> 'Successfully logged out!']);
     }
+
+    public function forgotPassword(Request $request)
+    {   
+        $request->validate([
+          'email' => 'required',
+          'new_password' => 'required|string|min:8'
+        ]);
+
+        try {
+            $user = User::where('email', $request->email) -> firstOrFail();
+            
+            if([$request->email,'=', $user->email]) {
+                $user->password=Hash::make($request->new_password);
+                $user->save();
+            }
+
+            return response()->json(['message' => 'Password successfully changed.']);
+        } catch (\Exception $e) {
+            return response()->json(['errors' => $e->getMessage()], 500);
+        }
+    }
 }
