@@ -18,6 +18,7 @@ class ArtworkResource extends JsonResource
             'id' => $this->resource->id,
             'title' => $this->resource->title,
             'artist' => $this->resource->artist,
+            'artwork_image' => $this->resource->artwork_image,
         ];
     }
 }

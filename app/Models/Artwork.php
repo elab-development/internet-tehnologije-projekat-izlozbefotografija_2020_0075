@@ -12,6 +12,7 @@ class Artwork extends Model
     protected $fillable = [
         'title',
         'artist', 
+        'artwork_image',
     ];
 
     public function showings() {
