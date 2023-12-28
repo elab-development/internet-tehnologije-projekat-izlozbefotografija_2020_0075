@@ -38,8 +38,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show($id)
     {
+        $user = User::findOrFail($id);
         return new UserResource($user);
     }
 

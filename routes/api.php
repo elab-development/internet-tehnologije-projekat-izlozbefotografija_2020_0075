@@ -28,6 +28,7 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 
 Route::resource('exhibitions', ExhibitionController::class)->only(['index', 'show']);
+Route::resource('artworks', ArtworkController::class)->only(['index', 'show']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -47,11 +48,8 @@ Route::get('/exhibitions/{id}/artworks', [ExhibitionArtworkController::class, 'i
 Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
     Route::resource('exhibitions', ExhibitionController::class)->only(['update','store','destroy']);
     Route::delete('/newsletters/{id}', [NewsletterController::class, 'destroy']);
-    Route::post('/artwork/{id}/upload-image', [ArtworkController::class, 'uploadImage'])->name('uploadImage');
+    Route::post('/artworks/{id}/upload-image', [ArtworkController::class, 'uploadImage'])->name('uploadImage');
+    Route::resource('artworks', ArtworkController::class)->only(['update','store','destroy']);
 });
 
-Route::post('forgot/password',[AuthController::class,'forgotPassword']);
-
-Route::resource('artworks', ArtworkController::class);
-
-
+Route::post('forgot-password',[AuthController::class,'forgotPassword']);

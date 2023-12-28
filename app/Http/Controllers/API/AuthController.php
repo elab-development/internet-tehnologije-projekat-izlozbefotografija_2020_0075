@@ -66,9 +66,9 @@ class AuthController extends Controller
 
         try {
             $user = User::where('email', $request->email) -> firstOrFail();
-            
-            if([$request->email,'=', $user->email]) {
-                $user->password=Hash::make($request->new_password);
+
+            if ($request->email == $user->email) {
+                $user->password = Hash::make($request->new_password);
                 $user->save();
             }
 

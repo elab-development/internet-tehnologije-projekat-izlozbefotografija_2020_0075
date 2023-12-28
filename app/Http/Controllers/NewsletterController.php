@@ -34,20 +34,16 @@ class NewsletterController extends Controller
             $request->validate([
                 "email" => "required|email|unique:newsletters,email",
             ], [
-                "email.unique" => "Korisnik sa ovom email adresom je već prijavljen.",
+                "email.unique" => "User with this email already exists!",
             ]);
 
             $newsletter = Newsletter::create([
                 "email" => $request->input('email'),
             ]);
 
-            return response()->json(['message' => "Uspešno ste se prijavili na Newsletter.", 'data' => $newsletter]);
-        } catch (QueryException $e) {
-            if ($e->errorInfo[1] === 1062) {
-                return response()->json(['error' => "Korisnik je već prijavljen."], 422);
-            } else {
-                return response()->json(['error' => "Došlo je do greške."], 500);
-            }
+            return response()->json(['message' => "You have successfully subscribed to our Newsletter.", 'data' => $newsletter]);
+        } catch (\Exception $e) {
+                return response()->json(['error' => "Failed to subscribe!", 'message' => $e->getMessage()], 500);
         }
     }
 
