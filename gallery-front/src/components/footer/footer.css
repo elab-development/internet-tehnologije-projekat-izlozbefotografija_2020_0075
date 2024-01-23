@@ -1,0 +1,47 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(24, 24, 24, 0.6);
+    backdrop-filter: blur(2px);
+    border-top: 0.1px solid var(--light-gray);
+}
+
+.up {
+    margin-top: 2.6rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 70vw;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.logo-title p {
+    font-family: var(--decorative);
+    font-weight: 300;
+}
+
+.logo-title img {
+    height: 3.5rem;
+}
+
+.socials a {
+    color: var(--light-gray);
+}
+
+.icon {
+    height: 1.7rem;
+    width: 1.7rem;
+    margin-left: 2rem;
+}
+
+.down {
+    font-size: 80%;
+    margin-bottom: 1rem;
+}

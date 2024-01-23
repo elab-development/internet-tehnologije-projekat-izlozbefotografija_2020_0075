@@ -20,4 +20,6 @@
     color: var(--light-gray);
     font-size: var(--font-size);
     overflow-x: hidden;
+    background-color: var(--black);
+    scroll-behavior: smooth;
 }

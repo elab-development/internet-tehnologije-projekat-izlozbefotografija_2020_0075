@@ -1,0 +1,57 @@
+a {
+    color: var(--light-gray);
+    text-decoration: none;
+}
+
+.exhibition {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 0.1px solid var(--light-gray);
+    transition: background-color 0.3s;
+}
+
+.exhibition:hover {
+    background: rgba(217, 217, 217, 0.04);
+}
+
+.exhibitions-container {
+    margin-top: 2rem;
+}
+
+.exhibitions-container:last-child {
+    border-bottom: 0.1px solid var(--light-gray);
+}
+
+.exhibition-left {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.exhibition-left h3 {
+    font-size: 2rem;
+    padding-top: 10px;
+    padding-left: 1rem;
+}
+
+.exhibition-left p {
+    font-weight: 300;
+}
+
+.exhibition-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.exhibition-right .icon {
+    height: 2.4rem;
+    width: 2.4rem;
+}
