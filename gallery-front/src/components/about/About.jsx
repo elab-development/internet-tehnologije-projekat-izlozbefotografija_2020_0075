@@ -1,12 +1,10 @@
 import React from "react";
 import "./about.css";
-import NavBar from "../navbar/NavBar";
 import Footer from "../footer/Footer";
 
 const About = () => {
     return (
-        <div className="about">
-            <NavBar />
+        <div className="about App">
             <div className="about-title-container">
                 <h2 className="about-title">About The Atelier</h2>
             </div>

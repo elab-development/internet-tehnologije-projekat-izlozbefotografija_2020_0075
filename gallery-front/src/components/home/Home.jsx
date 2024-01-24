@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./home.css";
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
-import NavBar from "../navbar/NavBar.jsx";
 import Footer from "../footer/Footer.jsx";
 import Button from "../button/Button.jsx";
 import Exhibition from "../exhibition/Exhibition.jsx";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Home = () => {
+    const [newsletterEmail, setNewsletterEmail] = useState({
+        email: "",
+    });
+
     const exhibitions = [
         {
             id: 1,
@@ -28,10 +33,29 @@ const Home = () => {
         },
     ];
 
+    function handleInput(e) {
+        let newEmail = newsletterEmail;
+        newsletterEmail[e.target.name] = e.target.value;
+        //console.log(newEmail);
+        setNewsletterEmail(newEmail);
+    }
+
+    function handleNewsletter(e) {
+        e.preventDefault();
+        axios
+            .post("api/newsletters", newsletterEmail)
+            .then((res) => {
+                console.log(res.data);
+                alert("Thank you for subscribing to our newsletter!");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
     return (
         <div className="home">
             <section className="first-section">
-                <NavBar />
                 <div className="title">
                     <h1>Atelier Artisan</h1>
                     <h3>
@@ -71,7 +95,7 @@ const Home = () => {
 
                     <div className="more">
                         <IoArrowForwardCircleOutline className="more-icon" />
-                        <a href="">Find out more</a>
+                        <Link to="/about">Find out more</Link>
                     </div>
                 </div>
                 <div className="about-photo">
@@ -88,7 +112,11 @@ const Home = () => {
                         These are just some of the current exhibitions in our
                         gallery.{" "}
                     </p>
-                    <Button label="EXPLORE ALL EXHIBITIONS" />
+                    <Button
+                        type="button"
+                        to="/exhibitions"
+                        label="EXPLORE ALL EXHIBITIONS"
+                    />
                 </div>
                 <div className="exhibitions-container">
                     {exhibitions.map((exhibition) => (
@@ -104,7 +132,7 @@ const Home = () => {
             </section>
 
             <section className="fifth-section">
-                <div className="newsletter">
+                <form className="newsletter" onSubmit={handleNewsletter}>
                     <h2>Join Us on the Journey</h2>
                     <p>
                         {" "}
@@ -113,9 +141,14 @@ const Home = () => {
                         craftsmanship. Come, explore, and be part of the
                         ever-evolving tapestry of art at Atelier Artisan.
                     </p>
-                    <input type="text" placeholder="Enter your email here" />
-                    <Button label="SUBSCRIBE TO OUR NEWSLETTER" />
-                </div>
+                    <input
+                        type="text"
+                        name="email"
+                        onInput={handleInput}
+                        placeholder="Enter your email here"
+                    />
+                    <Button type="submit" label="SUBSCRIBE TO OUR NEWSLETTER" />
+                </form>
             </section>
 
             <Footer />

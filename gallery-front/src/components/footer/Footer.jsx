@@ -12,13 +12,13 @@ const Footer = () => {
                     <p>Atelier Artisan</p>
                 </div>
                 <div className="socials">
-                    <a href="">
+                    <a href="https://www.instagram.com/">
                         <FaInstagram className="icon" />
                     </a>
-                    <a href="">
+                    <a href="https://www.facebook.com">
                         <FaFacebookF className="icon" />
                     </a>
-                    <a href="">
+                    <a href="https://www.youtube.com">
                         <AiOutlineYoutube className="icon" />
                     </a>
                 </div>
