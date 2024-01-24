@@ -7,31 +7,20 @@ import Exhibition from "../exhibition/Exhibition.jsx";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const Home = () => {
+const Home = ({ exhibitions }) => {
     const [newsletterEmail, setNewsletterEmail] = useState({
         email: "",
     });
 
-    const exhibitions = [
-        {
-            id: 1,
-            title: "Vivid Visions: A Contemporary Art Showcase",
-            startDate: "Jan 3, 2023",
-            endDate: "Aug 1, 2024",
-        },
-        {
-            id: 2,
-            title: "Ethereal Explorations: A Mixed Media Exhibition",
-            startDate: "Feb 15, 2024",
-            endDate: "Oct 11, 2024",
-        },
-        {
-            id: 3,
-            title: "Gallery in Bloom: Springtime Art Showcase",
-            startDate: "May 30, 2024",
-            endDate: "Aug 14, 2024",
-        },
-    ];
+    let threeExhibitions;
+
+    if (exhibitions == null || exhibitions.length === 0) {
+        threeExhibitions = [];
+    } else if (exhibitions.length > 3) {
+        threeExhibitions = exhibitions.slice(0, 3);
+    } else {
+        threeExhibitions = exhibitions;
+    }
 
     function handleInput(e) {
         let newEmail = newsletterEmail;
@@ -119,15 +108,21 @@ const Home = () => {
                     />
                 </div>
                 <div className="exhibitions-container">
-                    {exhibitions.map((exhibition) => (
-                        <Exhibition
-                            key={exhibition.id}
-                            id={exhibition.id}
-                            title={exhibition.title}
-                            startDate={exhibition.startDate}
-                            endDate={exhibition.endDate}
-                        />
-                    ))}
+                    {threeExhibitions.length === 0 ? (
+                        <p>Sorry, there are no current exhibitions...</p>
+                    ) : (
+                        threeExhibitions.map((exhibit) => {
+                            return (
+                                <Exhibition
+                                    key={exhibit.id}
+                                    id={exhibit.id}
+                                    title={exhibit.name}
+                                    startDate={exhibit.start_date}
+                                    endDate={exhibit.end_date}
+                                />
+                            );
+                        })
+                    )}
                 </div>
             </section>
 

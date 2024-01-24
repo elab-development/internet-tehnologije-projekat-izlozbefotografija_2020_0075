@@ -31,6 +31,7 @@ class ExhibitionArtworkController extends Controller
                 'artist' => $artwork->artist,
                 'created_at' => $artwork->created_at,
                 'updated_at' => $artwork->updated_at,
+                'artwork_image' => $artwork->artwork_image,
             ];
         });
     
