@@ -1,17 +1,12 @@
-import React, { useState } from "react";
 import "./home.css";
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import Footer from "../footer/Footer.jsx";
 import Button from "../button/Button.jsx";
 import Exhibition from "../exhibition/Exhibition.jsx";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import Newsletter from "../newsletter/Newsletter.jsx";
 
 const Home = ({ exhibitions }) => {
-    const [newsletterEmail, setNewsletterEmail] = useState({
-        email: "",
-    });
-
     let threeExhibitions;
 
     if (exhibitions == null || exhibitions.length === 0) {
@@ -20,26 +15,6 @@ const Home = ({ exhibitions }) => {
         threeExhibitions = exhibitions.slice(0, 3);
     } else {
         threeExhibitions = exhibitions;
-    }
-
-    function handleInput(e) {
-        let newEmail = newsletterEmail;
-        newsletterEmail[e.target.name] = e.target.value;
-        //console.log(newEmail);
-        setNewsletterEmail(newEmail);
-    }
-
-    function handleNewsletter(e) {
-        e.preventDefault();
-        axios
-            .post("api/newsletters", newsletterEmail)
-            .then((res) => {
-                console.log(res.data);
-                alert("Thank you for subscribing to our newsletter!");
-            })
-            .catch((err) => {
-                console.log(err);
-            });
     }
 
     return (
@@ -127,23 +102,7 @@ const Home = ({ exhibitions }) => {
             </section>
 
             <section className="fifth-section">
-                <form className="newsletter" onSubmit={handleNewsletter}>
-                    <h2>Join Us on the Journey</h2>
-                    <p>
-                        {" "}
-                        Atelier Artisan is more than a gallery; it's an ode to
-                        the enduring legacy of human creativity and
-                        craftsmanship. Come, explore, and be part of the
-                        ever-evolving tapestry of art at Atelier Artisan.
-                    </p>
-                    <input
-                        type="text"
-                        name="email"
-                        onInput={handleInput}
-                        placeholder="Enter your email here"
-                    />
-                    <Button type="submit" label="SUBSCRIBE TO OUR NEWSLETTER" />
-                </form>
+                <Newsletter />
             </section>
 
             <Footer />

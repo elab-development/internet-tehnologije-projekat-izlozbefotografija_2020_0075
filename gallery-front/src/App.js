@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavBar from "./components/navbar/NavBar";
 import Visit from "./components/visit/Visit";
+import Profile from "./components/profile/Profile.jsx";
 import Exhibitions from "./components/exhibitions/Exhibitions";
 import axios from "axios";
 
@@ -36,7 +37,10 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<NavBar token={token} />}>
+                <Route
+                    path="/"
+                    element={<NavBar token={token} setToken={setToken} />}
+                >
                     <Route
                         path=""
                         element={<Home exhibitions={exhibitions} />}
@@ -54,6 +58,7 @@ function App() {
                         path="exhibitions"
                         element={<Exhibitions exhibitions={exhibitions} />}
                     />
+                    <Route path="profile" element={<Profile />} />
                 </Route>
             </Routes>
         </BrowserRouter>

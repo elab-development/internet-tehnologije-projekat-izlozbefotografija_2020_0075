@@ -12,6 +12,8 @@ const Login = ({ addToken, addUser }) => {
         password: "",
     });
 
+    const [error, setError] = useState(null);
+
     let navigate = useNavigate();
 
     function handleInput(e) {
@@ -35,6 +37,10 @@ const Login = ({ addToken, addUser }) => {
                     addToken(res.data.access_token);
                     addUser(res.data.user);
                     navigate("/");
+                } else {
+                    setError(
+                        "It seems like your credentials are incorrect. Please try again."
+                    );
                 }
             })
             .catch((err) => {
@@ -50,6 +56,11 @@ const Login = ({ addToken, addUser }) => {
 
             <div className="form-container">
                 <form onSubmit={handleLogin}>
+                    {error == null ? (
+                        <p className="error-login"></p>
+                    ) : (
+                        <p className="error-login">{error}</p>
+                    )}
                     <div className="form-field">
                         <label htmlFor="email">Email:</label>
                         <input

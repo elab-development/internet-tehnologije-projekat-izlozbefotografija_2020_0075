@@ -67,3 +67,9 @@ input {
     color: var(--gold);
     text-decoration: underline;
 }
+
+.error-login {
+    margin-bottom: 2rem;
+    color: var(--gold);
+    font-size: 1.4rem;
+}

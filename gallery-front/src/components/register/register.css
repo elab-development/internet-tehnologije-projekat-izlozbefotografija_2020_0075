@@ -5,3 +5,9 @@ form {
 .form-container {
     height: 120vh;
 }
+
+.error-registration {
+    margin-bottom: 2rem;
+    color: var(--gold);
+    font-size: 1.4rem;
+}

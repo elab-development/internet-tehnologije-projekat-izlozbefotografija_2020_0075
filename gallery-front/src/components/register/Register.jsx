@@ -16,6 +16,8 @@ const Register = () => {
         password: "",
     });
 
+    const [error, setError] = useState(null);
+
     let navigate = useNavigate();
 
     function handleInput(e) {
@@ -30,8 +32,14 @@ const Register = () => {
         axios
             .post("api/register", userData)
             .then((res) => {
-                console.log(res.data);
-                navigate("/login");
+                if (res.data.success === true) {
+                    console.log(res.data);
+                    navigate("/login");
+                } else {
+                    setError(
+                        "It seems like your credentials are incorrect. Please try again."
+                    );
+                }
             })
             .catch((err) => {
                 console.log(err);
@@ -91,6 +99,12 @@ const Register = () => {
                             onInput={handleInput}
                         />
                     </div>
+
+                    {error == null ? (
+                        <p className="error-registration"></p>
+                    ) : (
+                        <p className="error-registration">{error}</p>
+                    )}
 
                     <Button
                         className="login-button"

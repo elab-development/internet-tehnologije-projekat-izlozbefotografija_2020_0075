@@ -4,7 +4,7 @@ import Button from "../button/Button";
 import { Link, Outlet } from "react-router-dom";
 import axios from "axios";
 
-const NavBar = ({ token }) => {
+const NavBar = ({ token, setToken }) => {
     function handleLogout() {
         //ovako izgleda heder kada saljemo zahtev za logout
         let config = {
@@ -24,6 +24,7 @@ const NavBar = ({ token }) => {
                 console.log(JSON.stringify(response.data));
                 //kada se izloguje uspesno, obrisace mu se token
                 window.sessionStorage.setItem("auth_token", null);
+                setToken(null);
             })
             .catch((error) => {
                 console.log(error);
@@ -56,15 +57,20 @@ const NavBar = ({ token }) => {
                             />
                         </li>
                     ) : (
-                        <li>
-                            <Button
-                                type="button"
-                                label="LOGOUT"
-                                to="/"
-                                className="nav-button"
-                                onClick={handleLogout}
-                            />
-                        </li>
+                        <>
+                            <li>
+                                <Link to="/profile">PROFILE</Link>
+                            </li>
+                            <li>
+                                <Button
+                                    type="button"
+                                    label="LOGOUT"
+                                    to="/"
+                                    className="nav-button"
+                                    onClick={handleLogout}
+                                />
+                            </li>
+                        </>
                     )}
                 </ul>
             </nav>
