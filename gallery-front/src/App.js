@@ -6,6 +6,7 @@ import Home from "./components/home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import NavBar from "./components/navbar/NavBar";
+import Visit from "./components/visit/Visit";
 
 function App() {
     const [token, setToken] = useState();
@@ -25,6 +26,7 @@ function App() {
                         element={<Login addToken={addToken} />}
                     />
                     <Route path="register" element={<Register />} />
+                    <Route path="visit" element={<Visit />} />
                 </Route>
             </Routes>
         </BrowserRouter>
