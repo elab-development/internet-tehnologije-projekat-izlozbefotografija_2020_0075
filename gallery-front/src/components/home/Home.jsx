@@ -4,7 +4,7 @@ import Footer from "../footer/Footer.jsx";
 import Button from "../button/Button.jsx";
 import Exhibition from "../exhibition/Exhibition.jsx";
 import { Link } from "react-router-dom";
-import Newsletter from "../newsletter/Newsletter.jsx";
+import Newsletter from "./newsletter/Newsletter.jsx";
 
 const Home = ({ exhibitions }) => {
     let threeExhibitions;

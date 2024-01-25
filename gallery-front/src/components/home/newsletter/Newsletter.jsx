@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./newsletter.css";
-import Button from "../button/Button";
+import Button from "../../button/Button";
 import axios from "axios";
 
 const Newsletter = () => {

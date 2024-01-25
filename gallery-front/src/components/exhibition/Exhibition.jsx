@@ -1,10 +1,11 @@
 import React from "react";
 import "./exhibition.css";
 import { BsArrowUpRightCircle } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Exhibition = ({ id, title, startDate, endDate }) => {
     return (
-        <a href="">
+        <Link to={`/exhibitions/${id}`}>
             <div className="exhibition">
                 <div className="exhibition-left">
                     <h3>{id}</h3>
@@ -17,7 +18,7 @@ const Exhibition = ({ id, title, startDate, endDate }) => {
                     <BsArrowUpRightCircle className="icon" />
                 </div>
             </div>
-        </a>
+        </Link>
     );
 };
 

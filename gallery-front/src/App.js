@@ -10,6 +10,7 @@ import Visit from "./components/visit/Visit";
 import Profile from "./components/profile/Profile.jsx";
 import Exhibitions from "./components/exhibitions/Exhibitions";
 import axios from "axios";
+import ExhibitionDetails from "./components/exhibition/ExhibitionDetails.jsx";
 
 function App() {
     const [token, setToken] = useState();
@@ -59,6 +60,10 @@ function App() {
                         element={<Exhibitions exhibitions={exhibitions} />}
                     />
                     <Route path="profile" element={<Profile />} />
+                    <Route
+                        path="exhibitions/:id"
+                        element={<ExhibitionDetails />}
+                    />
                 </Route>
             </Routes>
         </BrowserRouter>
