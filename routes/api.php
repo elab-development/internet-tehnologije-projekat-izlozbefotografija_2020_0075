@@ -5,6 +5,7 @@ use App\Http\Controllers\ArtworkController;
 use App\Http\Controllers\ExhibitionArtworkController;
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -53,3 +54,5 @@ Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
 });
 
 Route::post('forgot-password',[AuthController::class,'forgotPassword']);
+
+Route::get('/tickets', [TicketController::class, 'index']);

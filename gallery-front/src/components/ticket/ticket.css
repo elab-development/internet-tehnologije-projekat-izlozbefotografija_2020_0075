@@ -1,0 +1,53 @@
+.ticket {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 0.1px solid var(--light-gray);
+    transition: background-color 0.3s;
+}
+
+.ticket:hover {
+    background: rgba(217, 217, 217, 0.04);
+}
+
+.ticket-left {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.ticket-left h3 {
+    font-size: 2rem;
+    padding-top: 10px;
+    padding-left: 1rem;
+}
+
+.ticket-left p {
+    font-weight: 300;
+}
+
+.ticket-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.ticket-right p {
+    margin-right: 20px;
+}
+
+.person-count {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.person-count .icon {
+    margin-right: 5px;
+}

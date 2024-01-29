@@ -1,0 +1,35 @@
+.tickets-title-container {
+    padding-top: 10rem;
+    padding-bottom: 3rem;
+    text-align: center;
+}
+
+.tickets-title {
+    font-family: var(--decorative);
+    font-size: 2.5rem;
+    font-weight: 400;
+    border-bottom: 1px solid var(--gold);
+    display: inline;
+}
+
+.all-tickets-container {
+    max-width: 65vw;
+    margin: 0 auto;
+    border-bottom: 0.1px solid var(--light-gray);
+}
+
+.tickets-message {
+    font-size: 1.6rem;
+    margin-left: 2rem;
+    color: var(--gold);
+}
+
+.pagination-buttons {
+    max-width: 65vw;
+    margin: 0 auto;
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

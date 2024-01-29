@@ -11,6 +11,7 @@ import Profile from "./components/profile/Profile.jsx";
 import Exhibitions from "./components/exhibitions/Exhibitions";
 import axios from "axios";
 import ExhibitionDetails from "./components/exhibition/ExhibitionDetails.jsx";
+import Tickets from "./components/tickets/Tickets.jsx";
 
 function App() {
     const [token, setToken] = useState();
@@ -18,13 +19,13 @@ function App() {
     const [exhibitions, setExhibitions] = useState(null);
 
     useEffect(() => {
-        if (exhibitions == null) {
+        if (exhibitions === null) {
             axios.get("api/exhibitions").then((res) => {
                 console.log(res.data.exhibitions);
                 setExhibitions(res.data.exhibitions);
             });
         }
-    }, []);
+    }, [exhibitions]);
 
     function addToken(auth_token) {
         setToken(auth_token);
@@ -63,6 +64,15 @@ function App() {
                     <Route
                         path="exhibitions/:id"
                         element={<ExhibitionDetails />}
+                    />
+                    <Route
+                        path="tickets"
+                        element={
+                            <Tickets
+                                user={loggedInUser}
+                                exhibitions={exhibitions}
+                            />
+                        }
                     />
                 </Route>
             </Routes>

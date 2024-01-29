@@ -59,6 +59,9 @@ const NavBar = ({ token, setToken }) => {
                     ) : (
                         <>
                             <li>
+                                <Link to="/tickets">TICKETS</Link>
+                            </li>
+                            <li>
                                 <Link to="/profile">PROFILE</Link>
                             </li>
                             <li>
