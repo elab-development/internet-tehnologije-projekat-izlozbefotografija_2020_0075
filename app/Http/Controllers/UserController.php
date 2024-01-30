@@ -67,4 +67,10 @@ class UserController extends Controller
     {
         //
     }
+
+    public function profile()
+    {
+        $user = auth()->user();
+        return new UserResource($user);
+    }
 }

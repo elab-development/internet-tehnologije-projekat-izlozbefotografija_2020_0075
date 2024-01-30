@@ -60,7 +60,10 @@ function App() {
                         path="exhibitions"
                         element={<Exhibitions exhibitions={exhibitions} />}
                     />
-                    <Route path="profile" element={<Profile />} />
+                    <Route
+                        path="profile"
+                        element={<Profile token={token} />}
+                    />
                     <Route
                         path="exhibitions/:id"
                         element={<ExhibitionDetails />}
