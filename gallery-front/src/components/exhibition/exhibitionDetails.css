@@ -1,0 +1,41 @@
+.exhibitions-message {
+    font-size: 1.6rem;
+    margin-left: 2rem;
+    color: var(--gold);
+}
+
+.artworks-container {
+    max-width: 65vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.artwork-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.artwork-image {
+    max-width: 65vw;
+    height: auto;
+    border-radius: 6.25rem 0rem;
+    border-top: 1px solid var(--light-gray);
+    border-bottom: 1px solid var(--light-gray);
+    margin-bottom: 10px;
+}
+
+.artwork-details {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.artwork-title {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: inherit;
+    font-family: inherit;
+}
