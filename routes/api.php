@@ -54,3 +54,5 @@ Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
 Route::post('forgot-password',[AuthController::class,'forgotPassword']);
 
 Route::get('/tickets', [TicketController::class, 'index']);
+
+Route::post('tickets', [TicketController::class, 'store']);

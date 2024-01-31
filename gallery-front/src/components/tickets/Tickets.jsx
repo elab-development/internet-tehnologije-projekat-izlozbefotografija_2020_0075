@@ -4,6 +4,7 @@ import axios from "axios";
 import Ticket from "../ticket/Ticket";
 import Button from "../button/Button";
 import Footer from "../footer/Footer";
+import TicketReservation from "./TicketReservation";
 
 const Tickets = ({ user, exhibitions }) => {
     const itemsPerPage = 4;
@@ -71,6 +72,10 @@ const Tickets = ({ user, exhibitions }) => {
                     onClick={() => handlePageChanging(currentPage + 1)}
                     disabled={currentPage === totalPages}
                 />
+            </div>
+
+            <div className="ticket-reservation-container">
+                <TicketReservation user={user} exhibitions={exhibitions} />
             </div>
 
             <Footer />

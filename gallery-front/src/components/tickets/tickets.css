@@ -33,3 +33,51 @@
     justify-content: flex-end;
     align-items: center;
 }
+
+.success-message {
+    color: var(--gold);
+    font-weight: 400;
+    text-align: center;
+}
+
+.error-message {
+    color: var(--gold);
+    font-weight: 400;
+    text-align: center;
+}
+
+.ticket-reservation form .form-field {
+    margin-bottom: 30px;
+}
+
+.ticket-reservation form .form-field input {
+    width: 280px;
+}
+
+.ticket-reservation form .form-field label span {
+    font-family: var(--text);
+    color: var(--light-gray);
+    font-size: var(--font-size);
+}
+
+.ticket-reservation form {
+    margin-bottom: 0px;
+}
+
+.reservation-title-container {
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+    text-align: center;
+}
+
+.reservation-message {
+    font-size: 1.6rem;
+    margin-left: 2rem;
+    color: var(--gold);
+    text-align: center;
+}
+
+.ticket-reservation form .form-field label select {
+    font-family: var(--text);
+    font-size: var(--font-size);
+}

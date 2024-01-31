@@ -30,7 +30,7 @@ const Profile = ({ token }) => {
     }, [token]);
 
     if (!user) {
-        return <div>Loading...</div>;
+        return;
     }
 
     return (
