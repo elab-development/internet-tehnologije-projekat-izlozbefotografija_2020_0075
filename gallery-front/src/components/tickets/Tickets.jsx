@@ -21,16 +21,28 @@ const Tickets = ({ user, exhibitions }) => {
 
     const totalPages = Math.ceil((tickets ? tickets.length : 0) / itemsPerPage);
 
-    useEffect(() => {
+    const handleReservationSuccess = () => {
         if (user) {
             axios.get(`api/tickets?user_id=${user.id}`).then((res) => {
                 setTickets(res.data.tickets);
             });
         }
-    }, [user]);
+    };
 
+    useEffect(() => {
+        handleReservationSuccess();
+    }, [user]);
+    
     return (
         <div className="tickets">
+            <div className="ticket-reservation-container">
+                <TicketReservation
+                    user={user}
+                    exhibitions={exhibitions}
+                    reservationSuccess={handleReservationSuccess}
+                />
+            </div>
+
             <div className="tickets-title-container">
                 <h2 className="tickets-title">Tickets</h2>
             </div>
@@ -72,10 +84,6 @@ const Tickets = ({ user, exhibitions }) => {
                     onClick={() => handlePageChanging(currentPage + 1)}
                     disabled={currentPage === totalPages}
                 />
-            </div>
-
-            <div className="ticket-reservation-container">
-                <TicketReservation user={user} exhibitions={exhibitions} />
             </div>
 
             <Footer />

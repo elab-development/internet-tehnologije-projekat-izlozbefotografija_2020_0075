@@ -2,21 +2,24 @@ import React, { useState } from "react";
 import "./tickets.css";
 import axios from "axios";
 
-const TicketReservation = ({ user, exhibitions }) => {
+const TicketReservation = ({ user, exhibitions, reservationSuccess }) => {
     const [selectedExhibition, setSelectedExhibition] = useState("");
     const [selectedDate, setSelectedDate] = useState("");
     const [personCount, setPersonCount] = useState(1);
     const [reservationMessage, setReservationMessage] = useState(null);
 
     const handleExhibitionChange = (event) => {
+        setReservationMessage(null);
         setSelectedExhibition(event.target.value);
     };
 
     const handleDateChange = (event) => {
+        setReservationMessage(null);
         setSelectedDate(event.target.value);
     };
 
     const handlePersonCountChange = (event) => {
+        setReservationMessage(null);
         setPersonCount(parseInt(event.target.value, 10));
     };
 
@@ -35,6 +38,7 @@ const TicketReservation = ({ user, exhibitions }) => {
             })
             .then((res) => {
                 setReservationMessage("Reservation successful!");
+                reservationSuccess();
             })
             .catch((error) => {
                 setReservationMessage("Error during reservation!");
@@ -43,19 +47,18 @@ const TicketReservation = ({ user, exhibitions }) => {
 
     return (
         <div className="ticket-reservation">
-            <div className="reservation-title-container">
+            <div className="tickets-title-container">
                 <h2 className="tickets-title">Ticket Reservation</h2>
             </div>
 
-            <p className="reservation-message">
-                Select an exhibition, choose a date, specify the number of
-                persons, and click 'RESERVE TICKET' to secure your spot.
-            </p>
-
             <form>
+                <p className="reservation-message">
+                    Select an exhibition, choose a date, specify the number of
+                    persons, and click 'RESERVE TICKET' to secure your spot.
+                </p>
+
                 <div className="form-field">
-                    <label>
-                        <span>Exhibition: </span>
+                    <label>Exhibition:</label>
                         <select
                             onChange={handleExhibitionChange}
                             value={selectedExhibition}
@@ -73,33 +76,28 @@ const TicketReservation = ({ user, exhibitions }) => {
                                     </option>
                                 ))}
                         </select>
-                    </label>
                 </div>
 
                 <div className="form-field">
-                    <label>
-                        <span>Date: </span>
+                    <label>Date:</label>
                         <input
                             type="date"
                             value={selectedDate}
                             onChange={handleDateChange}
                         />
-                    </label>
                 </div>
 
                 <div className="form-field">
-                    <label>
-                        <span>Number of Persons: </span>
+                    <label>Number of Persons:</label>
                         <input
                             type="number"
                             value={personCount}
                             onChange={handlePersonCountChange}
                             min="1"
                         />
-                    </label>
                 </div>
 
-                <div className="form-field">
+                <div className="form-btn">
                     <button type="button" onClick={handleReservationSubmit}>
                         RESERVE TICKET
                     </button>
