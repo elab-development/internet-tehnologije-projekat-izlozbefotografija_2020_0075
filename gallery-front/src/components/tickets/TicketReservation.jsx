@@ -29,6 +29,11 @@ const TicketReservation = ({ user, exhibitions, reservationSuccess }) => {
             return;
         }
 
+        if (new Date(selectedDate) < new Date()) {
+            setReservationMessage("Selected date must be in the future.");
+            return;
+        }
+
         axios
             .post("api/tickets", {
                 user_id: user.id,
@@ -41,7 +46,11 @@ const TicketReservation = ({ user, exhibitions, reservationSuccess }) => {
                 reservationSuccess();
             })
             .catch((error) => {
-                setReservationMessage("Error during reservation!");
+                if (error.response.data.message.includes("date")) {
+                    setReservationMessage("Selected date is outside the valid range.");
+                } else {
+                    setReservationMessage("Error during reservation!");
+                }
             });
     };
 
