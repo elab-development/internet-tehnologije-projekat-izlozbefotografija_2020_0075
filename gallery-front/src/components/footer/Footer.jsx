@@ -25,7 +25,7 @@ const Footer = () => {
             </div>
 
             <div className="down">
-                <p>©2023 All Rights Reserved. Projekat za ITEH</p>
+                <p>©2023 All Rights Reserved. Projekat za ITEH.</p>
             </div>
         </footer>
     );

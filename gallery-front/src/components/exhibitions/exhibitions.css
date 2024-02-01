@@ -18,6 +18,10 @@
     border-bottom: 0.1px solid var(--light-gray);
 }
 
+.all-exhibitions-container button {
+    margin: 0;
+}
+
 .exhibitions-message {
     font-size: 1.6rem;
     margin-left: 2rem;

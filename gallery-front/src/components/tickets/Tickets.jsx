@@ -76,13 +76,13 @@ const Tickets = ({ user, exhibitions }) => {
                 <Button
                     label="PREVIOUS"
                     onClick={() => handlePageChanging(currentPage - 1)}
-                    disabled={currentPage === 1}
+                    disabled={currentPage === 1 || !tickets || tickets.length === 0}
                 />
                 {currentPage} / {totalPages}
                 <Button
                     label="NEXT"
                     onClick={() => handlePageChanging(currentPage + 1)}
-                    disabled={currentPage === totalPages}
+                    disabled={currentPage === totalPages || !tickets || tickets.length === 0}
                 />
             </div>
 
