@@ -56,11 +56,7 @@ const Login = ({ addToken, addUser }) => {
 
             <div className="form-container">
                 <form onSubmit={handleLogin}>
-                    {error == null ? (
-                        <p className="error-login"></p>
-                    ) : (
-                        <p className="error-login">{error}</p>
-                    )}
+                    {error && <p className="error-login">{error}</p>}
                     <div className="form-field">
                         <label htmlFor="email">Email:</label>
                         <input
@@ -78,6 +74,9 @@ const Login = ({ addToken, addUser }) => {
                             id="password"
                             onInput={handleInput}
                         />
+                        <label className="login-question">
+                            <Link to="/forgot-password">Forgot your password?</Link>
+                        </label>
                     </div>
 
                     <Button

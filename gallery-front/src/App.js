@@ -12,6 +12,7 @@ import Exhibitions from "./components/exhibitions/Exhibitions";
 import axios from "axios";
 import ExhibitionDetails from "./components/exhibition/ExhibitionDetails.jsx";
 import Tickets from "./components/tickets/Tickets.jsx";
+import ForgotPassword from "./components/login/ForgotPassword.jsx";
 
 function App() {
     const [token, setToken] = useState();
@@ -54,6 +55,7 @@ function App() {
                             <Login addUser={addUser} addToken={addToken} />
                         }
                     />
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="register" element={<Register />} />
                     <Route path="visit" element={<Visit />} />
                     <Route
