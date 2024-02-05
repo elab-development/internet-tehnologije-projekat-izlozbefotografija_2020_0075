@@ -160,3 +160,25 @@ span {
     padding: 1rem 0;
     height: 3rem;
 }
+
+@media (max-width: 1000px) {
+    .first-section .title h1 {
+        font-size: 4rem;
+        padding: 0 2rem;
+    }
+    .second-section {
+        display: none;
+    }
+    .third-section {
+        flex-direction: column;
+    }
+    .more {
+        padding-bottom: 2rem;
+    }
+    .exhibitions-description {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+    }
+}

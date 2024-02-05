@@ -96,3 +96,16 @@ span {
     font-family: var(--decorative);
     font-weight: 400;
 }
+
+@media (max-width: 1200px) {
+    .about-general {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .about-mvs-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

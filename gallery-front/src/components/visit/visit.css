@@ -94,3 +94,9 @@
 .expanded {
     transform: rotate(180deg);
 }
+
+@media (max-width: 700px) {
+    .visit-contact {
+        padding: 2rem 4rem;
+    }
+}

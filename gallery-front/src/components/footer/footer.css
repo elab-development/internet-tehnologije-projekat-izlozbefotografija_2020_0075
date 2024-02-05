@@ -45,3 +45,13 @@ footer {
     font-size: 80%;
     margin-bottom: 0;
 }
+
+@media (max-width: 650px) {
+    .up {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 2rem;
+        gap: 2rem;
+    }
+}

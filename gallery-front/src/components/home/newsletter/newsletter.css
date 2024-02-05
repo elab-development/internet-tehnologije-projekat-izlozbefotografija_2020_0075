@@ -42,3 +42,12 @@
     font-size: 90%;
     margin-bottom: 1rem;
 }
+
+@media (max-width: 700px) {
+    .newsletter {
+        padding: 2rem 2rem 3rem 2rem;
+    }
+    .newsletter input {
+        width: 80%;
+    }
+}

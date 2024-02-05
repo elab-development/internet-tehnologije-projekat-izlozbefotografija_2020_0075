@@ -55,7 +55,10 @@ function App() {
                             <Login addUser={addUser} addToken={addToken} />
                         }
                     />
-                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                    <Route
+                        path="/forgot-password"
+                        element={<ForgotPassword />}
+                    />
                     <Route path="register" element={<Register />} />
                     <Route path="visit" element={<Visit />} />
                     <Route
@@ -64,7 +67,12 @@ function App() {
                     />
                     <Route
                         path="profile"
-                        element={<Profile token={token} />}
+                        element={
+                            <Profile
+                                token={token}
+                                loggedInUser={loggedInUser}
+                            />
+                        }
                     />
                     <Route
                         path="exhibitions/:id"

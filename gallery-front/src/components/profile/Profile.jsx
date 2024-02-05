@@ -11,27 +11,27 @@ import {
 } from "react-icons/bs";
 import Footer from "../footer/Footer";
 
-const Profile = ({ token }) => {
-    const [user, setUser] = useState(null);
+const Profile = ({ token, loggedInUser }) => {
+    // const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        axios
-            .get("/api/profile", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                setUser(response.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching user profile:", error);
-            });
-    }, [token]);
+    // useEffect(() => {
+    //     axios
+    //         .get("/api/profile", {
+    //             headers: {
+    //                 Authorization: `Bearer ${token}`,
+    //             },
+    //         })
+    //         .then((response) => {
+    //             setUser(response.data);
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error fetching user profile:", error);
+    //         });
+    // }, [token]);
 
-    if (!user) {
-        return;
-    }
+    // if (!user) {
+    //     return;
+    // }
 
     return (
         <div className="profile-container">
@@ -40,34 +40,48 @@ const Profile = ({ token }) => {
             </div>
 
             <div className="all-profile-info-containter">
-                <p className="profile-message">Welcome to your profile page!</p>
+                {loggedInUser ? (
+                    <p className="profile-message">
+                        Welcome to your profile page!
+                    </p>
+                ) : (
+                    <p className="profile-message">Nobody is logged in...</p>
+                )}
 
                 <div className="profile-info">
                     <BsPerson className="profile-icon" />
-                    <div className="profile-detail">
-                        Username: {user.data.username}
-                    </div>
+                    {loggedInUser && (
+                        <div className="profile-detail">
+                            Username: {loggedInUser.username}
+                        </div>
+                    )}
                 </div>
 
                 <div className="profile-info">
                     <BsEnvelope className="profile-icon" />
-                    <div className="profile-detail">
-                        Email: {user.data.email}
-                    </div>
+                    {loggedInUser && (
+                        <div className="profile-detail">
+                            Email: {loggedInUser.email}
+                        </div>
+                    )}
                 </div>
 
                 <div className="profile-info">
                     <BsPersonLinesFill className="profile-icon" />
-                    <div className="profile-detail">
-                        First Name: {user.data.first_name}
-                    </div>
+                    {loggedInUser && (
+                        <div className="profile-detail">
+                            First Name: {loggedInUser.first_name}
+                        </div>
+                    )}
                 </div>
 
                 <div className="profile-info">
                     <BsPersonLinesFill className="profile-icon" />
-                    <div className="profile-detail">
-                        Last Name: {user.data.last_name}
-                    </div>
+                    {loggedInUser && (
+                        <div className="profile-detail">
+                            Last Name: {loggedInUser.last_name}
+                        </div>
+                    )}
                 </div>
             </div>
 

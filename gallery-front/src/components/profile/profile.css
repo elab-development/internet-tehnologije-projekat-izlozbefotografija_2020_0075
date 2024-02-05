@@ -41,3 +41,14 @@
 .profile-detail {
     font-size: 1.6rem;
 }
+
+@media (max-width: 1300px) {
+    .all-profile-info-containter {
+        max-width: 60vw;
+    }
+}
+@media (max-width: 600px) {
+    .profile-info {
+        flex-direction: column;
+    }
+}
