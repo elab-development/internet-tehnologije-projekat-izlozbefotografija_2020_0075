@@ -4,7 +4,7 @@ import Button from "../button/Button";
 import { Link, Outlet } from "react-router-dom";
 import axios from "axios";
 
-const NavBar = ({ token, setToken }) => {
+const NavBar = ({ token, setToken, user }) => {
     function handleLogout() {
         //ovako izgleda heder kada saljemo zahtev za logout
         let config = {
@@ -33,33 +33,23 @@ const NavBar = ({ token, setToken }) => {
 
     return (
         <div className="App">
-            <nav>
-                <Link to="/">
-                    <img className="logo" src="/images/logo.png" alt="logo" />
-                </Link>
-                <ul>
-                    <li>
-                        <Link to="/about">ABOUT</Link>
-                    </li>
-                    <li>
-                        <Link to="/exhibitions">EXHIBITIONS</Link>
-                    </li>
-                    <li>
-                        <Link to="/visit">VISIT</Link>
-                    </li>
-                    {token == null ? (
-                        <li>
-                            <Button
-                                type="button"
-                                label="LOGIN"
-                                to="/login"
-                                className="nav-button"
-                            />
-                        </li>
-                    ) : (
-                        <>
+            {token && user.role === "admin" ? (
+                <>
+                    <nav>
+                        <img
+                            className="logo"
+                            src="/images/logo.png"
+                            alt="logo"
+                        />
+                        <ul>
                             <li>
-                                <Link to="/tickets">TICKETS</Link>
+                                <Link to="/adminExhibitions">EXHIBITIONS</Link>
+                            </li>
+                            <li>
+                                <Link to="/adminNewsletters">NEWSLETTERS</Link>
+                            </li>
+                            <li>
+                                <Link to="/adminArtworks">ARTWORKS</Link>
                             </li>
                             <li>
                                 <Link to="/profile">PROFILE</Link>
@@ -73,10 +63,62 @@ const NavBar = ({ token, setToken }) => {
                                     onClick={handleLogout}
                                 />
                             </li>
-                        </>
-                    )}
-                </ul>
-            </nav>
+                        </ul>
+                    </nav>
+                </>
+            ) : (
+                <>
+                    <nav>
+                        <Link to="/">
+                            <img
+                                className="logo"
+                                src="/images/logo.png"
+                                alt="logo"
+                            />
+                        </Link>
+                        <ul>
+                            <li>
+                                <Link to="/about">ABOUT</Link>
+                            </li>
+                            <li>
+                                <Link to="/exhibitions">EXHIBITIONS</Link>
+                            </li>
+                            <li>
+                                <Link to="/visit">VISIT</Link>
+                            </li>
+                            {token == null ? (
+                                <li>
+                                    <Button
+                                        type="button"
+                                        label="LOGIN"
+                                        to="/login"
+                                        className="nav-button"
+                                    />
+                                </li>
+                            ) : (
+                                <>
+                                    <li>
+                                        <Link to="/tickets">TICKETS</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/profile">PROFILE</Link>
+                                    </li>
+                                    <li>
+                                        <Button
+                                            type="button"
+                                            label="LOGOUT"
+                                            to="/"
+                                            className="nav-button"
+                                            onClick={handleLogout}
+                                        />
+                                    </li>
+                                </>
+                            )}
+                        </ul>
+                    </nav>
+                </>
+            )}
+
             <Outlet />
         </div>
     );

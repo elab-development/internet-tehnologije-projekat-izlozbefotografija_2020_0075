@@ -36,7 +36,11 @@ const Login = ({ addToken, addUser }) => {
                     );
                     addToken(res.data.access_token);
                     addUser(res.data.user);
-                    navigate("/");
+                    if (res.data.user.role === "admin") {
+                        navigate("/profile");
+                    } else {
+                        navigate("/");
+                    }
                 } else {
                     setError(
                         "It seems like your credentials are incorrect. Please try again."
@@ -75,7 +79,9 @@ const Login = ({ addToken, addUser }) => {
                             onInput={handleInput}
                         />
                         <label className="login-question">
-                            <Link to="/forgot-password">Forgot your password?</Link>
+                            <Link to="/forgot-password">
+                                Forgot your password?
+                            </Link>
                         </label>
                     </div>
 

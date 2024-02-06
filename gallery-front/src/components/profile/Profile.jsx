@@ -41,9 +41,13 @@ const Profile = ({ token, loggedInUser }) => {
 
             <div className="all-profile-info-containter">
                 {loggedInUser ? (
-                    <p className="profile-message">
-                        Welcome to your profile page!
-                    </p>
+                    loggedInUser.role === "admin" ? (
+                        <p className="profile-message">Welcome admin!</p>
+                    ) : (
+                        <p className="profile-message">
+                            Welcome to your profile page!
+                        </p>
+                    )
                 ) : (
                     <p className="profile-message">Nobody is logged in...</p>
                 )}

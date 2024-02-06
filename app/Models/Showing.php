@@ -9,6 +9,11 @@ class Showing extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'artwork_id',
+        'exhibition_id'
+    ];
+
     public function exhibitions() {
         return $this->belongsTo(Exhibition::class);
     }

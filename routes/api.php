@@ -5,6 +5,7 @@ use App\Http\Controllers\ArtworkController;
 use App\Http\Controllers\ExhibitionArtworkController;
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ShowingController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -49,6 +50,11 @@ Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
     Route::delete('/newsletters/{id}', [NewsletterController::class, 'destroy']);
     Route::post('/artworks/{id}/upload-image', [ArtworkController::class, 'uploadImage'])->name('uploadImage');
     Route::resource('artworks', ArtworkController::class)->only(['update','store','destroy']);
+    Route::post('/showings', [ShowingController::class, 'store']);
+    Route::delete('/showings/{id}', [ShowingController::class, 'destroy']);
+    Route::get('/showings', [ShowingController::class, 'index']);
+    Route::get('/newsletters', [NewsletterController::class, 'index']);
+
 });
 
 Route::post('forgot-password',[AuthController::class,'forgotPassword']);

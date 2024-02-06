@@ -1,0 +1,71 @@
+.all-newsletters {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.one-email {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.one-email input {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-right: 1rem;
+}
+
+.one-artwork {
+    padding: 1rem 2rem 1rem 2rem;
+    border-bottom: 0.6px solid var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+}
+
+.all-artworks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.all-artworks-list {
+    width: 60%;
+}
+
+.select-artwork {
+    width: 50vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 5rem;
+}
+
+.select-artwork select,
+.add-artwork-image select {
+    border-radius: 0.75rem;
+    border: 0.4px solid var(--light-gray);
+    color: var(--light-gray);
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-family: var(--text);
+    padding: 0 1rem;
+    background: rgba(24, 24, 24, 0.6);
+    backdrop-filter: blur(2px);
+    padding: 1rem;
+}
+
+.add-artwork form,
+.add-artwork-image form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

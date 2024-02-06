@@ -13,6 +13,9 @@ import axios from "axios";
 import ExhibitionDetails from "./components/exhibition/ExhibitionDetails.jsx";
 import Tickets from "./components/tickets/Tickets.jsx";
 import ForgotPassword from "./components/login/ForgotPassword.jsx";
+import AdminExhibitions from "./components/admin/AdminExhibitions.jsx";
+import AdminNewsletter from "./components/admin/AdminNewsletter.jsx";
+import AdminArtworks from "./components/admin/AdminArtworks.jsx";
 
 function App() {
     const [token, setToken] = useState();
@@ -42,7 +45,13 @@ function App() {
             <Routes>
                 <Route
                     path="/"
-                    element={<NavBar token={token} setToken={setToken} />}
+                    element={
+                        <NavBar
+                            token={token}
+                            setToken={setToken}
+                            user={loggedInUser}
+                        />
+                    }
                 >
                     <Route
                         path=""
@@ -87,6 +96,16 @@ function App() {
                             />
                         }
                     />
+                    <Route
+                        path="adminExhibitions"
+                        element={<AdminExhibitions />}
+                        exhibitions={exhibitions}
+                    />
+                    <Route
+                        path="adminNewsletters"
+                        element={<AdminNewsletter />}
+                    />
+                    <Route path="adminArtworks" element={<AdminArtworks />} />
                 </Route>
             </Routes>
         </BrowserRouter>
