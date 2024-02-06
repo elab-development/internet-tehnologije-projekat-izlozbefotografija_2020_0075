@@ -75,14 +75,42 @@ class ShowingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $showing = Showing::find($id);
-        if (is_null($showing)) {
-            return response()->json(['message' => "Showing not found.", 'data' => $id, 'success'=> false]);
+        $validator = Validator::make($request->all(), [
+            'artwork_id'=>'required|exists:artworks,id',
+            'exhibition_id' => 'required|exists:exhibitions,id',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([$validator->errors(), 'success'=>false]);
         }
 
-        $showing->delete();
-        return response()->json(['message' => "Showing successfully deleted!", 'data' => $showing, 'success'=> true]);
+        try {
+            // Pronalazi taj Showing
+            $showing = Showing::where([
+                'exhibition_id' => $request->exhibition_id,
+                'artwork_id' => $request->artwork_id,
+            ])->first();
+    
+            if ($showing) {
+                // Delete the showing
+                $showing->delete();
+    
+                return response()->json(['message' => "Showing successfully deleted!", 'data' => $showing, 'success' => true]);
+            } else {
+                return response()->json(['message' => "Showing not found.", 'data' => ['exhibition_id' => $request->exhibition_id, 'artwork_id' => $request->artwork_id], 'success' => false], 404);
+            }
+        } catch (\Exception $e) { //slash da bi bio pravi namespace
+            return response()->json(['error' => 'Failed to delete showing', 'message' => $e->getMessage()], 500);
+        }
+
+        // $showing = Showing::find($id);
+        // if (is_null($showing)) {
+        //     return response()->json(['message' => "Showing not found.", 'data' => $id, 'success'=> false]);
+        // }
+
+        // $showing->delete();
+        // return response()->json(['message' => "Showing successfully deleted!", 'data' => $showing, 'success'=> true]);
     }
 }

@@ -81,3 +81,17 @@
     gap: 2rem;
     padding-bottom: 5rem;
 }
+
+.artwork-table {
+    margin: 0 auto;
+}
+
+.artwork-table input {
+    width: 2rem;
+    margin-left: 1rem;
+}
+
+.delete-showing-button {
+    margin: 0 auto;
+    margin-top: 2rem;
+}

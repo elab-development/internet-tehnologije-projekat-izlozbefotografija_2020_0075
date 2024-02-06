@@ -2,6 +2,8 @@ import axios from "axios";
 import AddExibition from "./exhibitions/AddExibition";
 import DeleteExhibition from "./exhibitions/DeleteExhibition";
 import { useEffect, useState } from "react";
+import UpdateExhibition from "./exhibitions/UpdateExhibition";
+import AdminShowings from "./AdminShowings";
 
 const AdminExhibitions = ({ setExhibitionsHome }) => {
     const [exhibitions, setExhibitions] = useState();
@@ -32,7 +34,11 @@ const AdminExhibitions = ({ setExhibitionsHome }) => {
             ) : (
                 <>
                     <AddExibition handleAdd={handleChangedExhibitions} />
-
+                    <UpdateExhibition
+                        handleUpdate={handleChangedExhibitions}
+                        exhibitions={exhibitions}
+                    />
+                    <AdminShowings exhibitions={exhibitions} />
                     <DeleteExhibition
                         handleDelete={handleChangedExhibitions}
                         exhibitions={exhibitions}

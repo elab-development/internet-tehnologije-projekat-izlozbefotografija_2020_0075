@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
     Route::post('/artworks/{id}/upload-image', [ArtworkController::class, 'uploadImage'])->name('uploadImage');
     Route::resource('artworks', ArtworkController::class)->only(['update','store','destroy']);
     Route::post('/showings', [ShowingController::class, 'store']);
-    Route::delete('/showings/{id}', [ShowingController::class, 'destroy']);
+    Route::delete('/showings', [ShowingController::class, 'destroy']);
     Route::get('/showings', [ShowingController::class, 'index']);
     Route::get('/newsletters', [NewsletterController::class, 'index']);
 
