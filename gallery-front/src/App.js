@@ -98,8 +98,11 @@ function App() {
                     />
                     <Route
                         path="adminExhibitions"
-                        element={<AdminExhibitions />}
-                        exhibitions={exhibitions}
+                        element={
+                            <AdminExhibitions
+                                setExhibitionsHome={setExhibitions}
+                            />
+                        }
                     />
                     <Route
                         path="adminNewsletters"
