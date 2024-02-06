@@ -40,11 +40,16 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+        
         if(!Auth::attempt($request->only('email','password'))){
             return response()->json(['success'=>false]);
         }
 
-        $user = User::where('email', $request['email'])->firstOrFail();
+        $user = User::where('email', $request->input('email'))->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
@@ -65,7 +70,7 @@ class AuthController extends Controller
         ]);
 
         try {
-            $user = User::where('email', $request->email) -> firstOrFail();
+            $user = User::where('email', $request->input('email')) -> firstOrFail();
 
             if ($request->email == $user->email) {
                 $user->password = Hash::make($request->new_password);
