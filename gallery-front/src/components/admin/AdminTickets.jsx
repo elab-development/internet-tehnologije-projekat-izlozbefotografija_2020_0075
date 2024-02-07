@@ -21,7 +21,9 @@ const AdminTickets = () => {
 
         const ticketCounts = {};
 
-        ticketData.forEach((ticket) => {
+        const sortedTickets = ticketData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        sortedTickets.forEach((ticket) => {
             const ticketDate = new Date(ticket.date);
             const monthYear = ticketDate.toLocaleString("default", {
                 month: "long",
@@ -48,20 +50,51 @@ const AdminTickets = () => {
             </div>
             <div className="chart-container">
                 {ticketData.length === 0 ? (
-                    <p>No tickets available.</p>
+                    <p style={{ textAlign: "center" }}>Loading chart...</p>
                 ) : (
                     <div className="chart-wrapper">
                         <Chart
                             chartType="ColumnChart"
                             data={prepareChartData()}
                             options={{
-                                hAxis: { title: "Month" },
+                                hAxis: {
+                                    title: "Month",
+                                    titleTextStyle: {
+                                        color: "#d9d9d9",
+                                        fontName: "Josefin Sans",
+                                        fontSize: 20,
+                                    },
+                                    textStyle: {
+                                        color: "#d9d9d9",
+                                        fontName: "Josefin Sans",
+                                        fontSize: 15,
+                                    },
+                                },
                                 vAxis: {
                                     title: "Number of Tickets",
+                                    titleTextStyle: {
+                                        color: "#d9d9d9",
+                                        fontName: "Josefin Sans",
+                                        fontSize: 20,
+                                    },
+                                    textStyle: {
+                                        color: "#d9d9d9",
+                                        fontName: "Josefin Sans",
+                                        fontSize: 15,
+                                    },
                                     format: "0",
                                 },
+                                legend: {
+                                    textStyle: {
+                                        color: "#d9d9d9",
+                                        fontName: "Josefin Sans",
+                                        fontSize: 15,
+                                    },
+                                },
+                                colors: ["#bfa48d"],
+                                backgroundColor: "#171717",
                             }}
-                            width="600px"
+                            width="750px"
                             height="400px"
                         />
                     </div>
