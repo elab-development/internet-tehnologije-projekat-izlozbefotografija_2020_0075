@@ -16,6 +16,7 @@ import ForgotPassword from "./components/login/ForgotPassword.jsx";
 import AdminExhibitions from "./components/admin/AdminExhibitions.jsx";
 import AdminNewsletter from "./components/admin/AdminNewsletter.jsx";
 import AdminArtworks from "./components/admin/AdminArtworks.jsx";
+import AdminTickets from "./components/admin/AdminTickets.jsx";
 
 function App() {
     const [token, setToken] = useState();
@@ -109,6 +110,7 @@ function App() {
                         element={<AdminNewsletter />}
                     />
                     <Route path="adminArtworks" element={<AdminArtworks />} />
+                    <Route path="adminTickets" element={<AdminTickets />} />
                 </Route>
             </Routes>
         </BrowserRouter>

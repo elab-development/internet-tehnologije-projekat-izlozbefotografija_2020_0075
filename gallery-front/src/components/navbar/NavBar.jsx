@@ -52,6 +52,9 @@ const NavBar = ({ token, setToken, user }) => {
                                 <Link to="/adminArtworks">ARTWORKS</Link>
                             </li>
                             <li>
+                                <Link to="/adminTickets">TICKETS</Link>
+                            </li>
+                            <li>
                                 <Link to="/profile">PROFILE</Link>
                             </li>
                             <li>

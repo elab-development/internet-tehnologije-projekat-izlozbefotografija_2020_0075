@@ -95,3 +95,10 @@
     margin: 0 auto;
     margin-top: 2rem;
 }
+
+.chart-wrapper {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+}

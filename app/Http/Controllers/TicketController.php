@@ -13,7 +13,11 @@ class TicketController extends Controller
     {
         $userId = $request->input('user_id');
 
-        $tickets = Ticket::where('user_id', $userId)->with('exhibition')->get();
+        if ($userId) {
+            $tickets = Ticket::where('user_id', $userId)->with('exhibition')->get();
+        } else {
+            $tickets = Ticket::all();
+        }
 
         return response()->json(['tickets' => $tickets]);
     }
