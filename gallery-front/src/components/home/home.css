@@ -161,6 +161,12 @@ span {
     height: 3rem;
 }
 
+.sixth-section {
+    width: 65vw;
+    margin: 0 auto;
+    padding-bottom: 8rem;
+}
+
 @media (max-width: 1000px) {
     .first-section .title h1 {
         font-size: 4rem;

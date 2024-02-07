@@ -5,6 +5,7 @@ import Button from "../button/Button.jsx";
 import Exhibition from "../exhibition/Exhibition.jsx";
 import { Link } from "react-router-dom";
 import Newsletter from "./newsletter/Newsletter.jsx";
+import Trivia from "./trivia/Trivia.jsx";
 
 const Home = ({ exhibitions }) => {
     let threeExhibitions;
@@ -103,6 +104,17 @@ const Home = ({ exhibitions }) => {
 
             <section className="fifth-section">
                 <Newsletter />
+            </section>
+
+            <section className="sixth-section">
+                <div className="section-title-container">
+                    <h2 className="section-title">Art Trivia</h2>
+                    <p>
+                        How much do you know about art and culture? Test your
+                        knoledge with us!
+                    </p>
+                    <Trivia />
+                </div>
             </section>
 
             <Footer />

@@ -1,0 +1,35 @@
+.trivia-container {
+    padding: 4rem;
+    margin: 5rem 0;
+    margin-right: 5rem;
+    border-radius: 6.25rem 0rem;
+    border-right: 0.4px solid #d9d9d9;
+    border-left: 0.4px solid #d9d9d9;
+    background: rgba(217, 217, 217, 0.04);
+    backdrop-filter: blur(2px);
+}
+.trivia-question {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.trivia-answer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.trivia-answer p {
+    color: var(--gold);
+    font-weight: 400;
+    margin: 0;
+    font-family: var(--decorative);
+}
+
+.trivia {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
