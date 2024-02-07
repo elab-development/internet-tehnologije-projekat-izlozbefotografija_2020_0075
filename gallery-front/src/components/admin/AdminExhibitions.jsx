@@ -4,6 +4,7 @@ import DeleteExhibition from "./exhibitions/DeleteExhibition";
 import { useEffect, useState } from "react";
 import UpdateExhibition from "./exhibitions/UpdateExhibition";
 import AdminShowings from "./AdminShowings";
+import Footer from "../footer/Footer";
 
 const AdminExhibitions = ({ setExhibitionsHome }) => {
     const [exhibitions, setExhibitions] = useState();
@@ -43,6 +44,7 @@ const AdminExhibitions = ({ setExhibitionsHome }) => {
                         handleDelete={handleChangedExhibitions}
                         exhibitions={exhibitions}
                     />
+                    <Footer />
                 </>
             )}
         </div>

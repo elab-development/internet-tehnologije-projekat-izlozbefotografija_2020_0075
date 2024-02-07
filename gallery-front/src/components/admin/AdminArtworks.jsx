@@ -4,6 +4,7 @@ import Artworks from "./artworks/Artworks";
 import DeleteArtwork from "./artworks/DeleteArtwork";
 import AddArtwork from "./artworks/AddArtwork";
 import AddArtworkImage from "./artworks/AddArtworkImage";
+import Footer from "../footer/Footer";
 
 const AdminArtworks = () => {
     const [artworks, setArtworks] = useState([]);
@@ -65,6 +66,7 @@ const AdminArtworks = () => {
                         artworks={artworks}
                         handleDelete={handleChangedArtworks}
                     />
+                    <Footer />
                 </>
             )}
         </div>

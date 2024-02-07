@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./admin.css";
 import Button from "../button/Button";
+import Footer from "../footer/Footer";
 
 const AdminNewsletter = () => {
     const [newsletters, setNewsletters] = useState([]);
@@ -106,6 +107,7 @@ const AdminNewsletter = () => {
                             onClick={handleDelete}
                         />
                     </div>
+                    <Footer />
                 </>
             )}
         </div>

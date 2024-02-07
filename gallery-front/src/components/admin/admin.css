@@ -6,6 +6,7 @@
     gap: 4rem;
     justify-content: center;
     align-items: center;
+    padding-bottom: 5rem;
 }
 
 .one-email {
@@ -97,8 +98,8 @@
 }
 
 .chart-wrapper {
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
 }

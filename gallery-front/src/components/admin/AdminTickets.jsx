@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Chart } from "react-google-charts";
+import Footer from "../footer/Footer";
 
 const AdminTickets = () => {
     const [ticketData, setTicketData] = useState([]);
@@ -21,7 +22,9 @@ const AdminTickets = () => {
 
         const ticketCounts = {};
 
-        const sortedTickets = ticketData.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const sortedTickets = ticketData.sort(
+            (a, b) => new Date(b.date) - new Date(a.date)
+        );
 
         sortedTickets.forEach((ticket) => {
             const ticketDate = new Date(ticket.date);
@@ -99,6 +102,7 @@ const AdminTickets = () => {
                         />
                     </div>
                 )}
+                <Footer />
             </div>
         </div>
     );
