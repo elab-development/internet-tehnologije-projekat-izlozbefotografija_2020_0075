@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./visit.css";
 import Footer from "../footer/Footer.jsx";
 import { IoIosArrowDown } from "react-icons/io";
+import axios from "axios";
+import { TiWeatherCloudy } from "react-icons/ti";
+import { FaTemperatureHigh } from "react-icons/fa";
 
 const Visit = () => {
     const faqData = [
@@ -20,6 +23,8 @@ const Visit = () => {
     ];
 
     const [expandedQuestion, setExpandedQuestion] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [weather, setWeather] = useState(null);
 
     //ako je vec rasireno pitanje, skupice ga tako sto stavi null na expandedQuestion, i kada je ono null znaci da ni jedno pitanje nije rasireno
     function handleToggle(index) {
@@ -27,6 +32,26 @@ const Visit = () => {
             prevIndex === index ? null : index
         );
     }
+
+    let key = "4d83dbe3aa10fd34ec2992cfa845f9a3";
+
+    const fetchWeather = async () => {
+        try {
+            const response = await axios.get(
+                `https://api.openweathermap.org/data/2.5/weather?lat=44.78&lon=20.44&appid=${key}`
+            );
+            console.log(response.data);
+            setWeather(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.log("Error while fetching trivia.");
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchWeather();
+    }, []);
 
     return (
         <div className="visit">
@@ -79,6 +104,37 @@ const Visit = () => {
                         <p>CLOSED</p>
                     </div>
                 </div>
+            </div>
+            <div className="visit-title-container">
+                <h2 className="visit-title">
+                    PERFECT WEATHER FOR A GALLERY DATE
+                </h2>
+                <p>
+                    It looks like the perfect time to book your ticket for this
+                    week.
+                </p>
+            </div>
+            <div className="weather">
+                {loading ? (
+                    <p>Loading trivia...</p>
+                ) : (
+                    <div className="weather-container">
+                        <h3>
+                            <TiWeatherCloudy className="weather-icon" />
+                            {weather.weather[0].main} :{" "}
+                            <span>{weather.weather[0].description}</span>
+                        </h3>
+                        <p>
+                            <FaTemperatureHigh className="weather-icon" />
+                            <span>min:</span>{" "}
+                            {(weather.main.temp_min - 273.15).toFixed(2)}
+                            °C
+                            <span> max:</span>{" "}
+                            {(weather.main.temp_max - 273.15).toFixed(2)}
+                            °C
+                        </p>
+                    </div>
+                )}
             </div>
 
             <div className="visit-title-container">
