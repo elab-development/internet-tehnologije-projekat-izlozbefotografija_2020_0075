@@ -110,7 +110,7 @@ class ArtworkController extends Controller
     {
         // Validacija zahteva
         $request->validate([
-            'artwork_image' => 'required|image|mimes:jpeg,png,jpg,gif,tiff|max:2048', // Updated validation rule
+            'artwork_image' => 'required|image|mimes:jpeg,png,jpg,gif,tiff|max:2048', 
         ]);
 
         try {
@@ -118,7 +118,7 @@ class ArtworkController extends Controller
             $artwork = Artwork::findOrFail($id);
 
             // Fajl se cuva u 'artwork_images' direktorijumu
-            $path = $request->file('artwork_image')->store('artwork_images');
+            $path = $request->file('artwork_image')->store('public/artwork_images');
 
             // Update u koloni artwork_image za odabrano delo
             $artwork->update(['artwork_image' => $path]);

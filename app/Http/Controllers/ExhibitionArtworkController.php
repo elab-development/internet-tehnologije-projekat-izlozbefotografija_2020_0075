@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artwork;
 use App\Models\Showing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ExhibitionArtworkController extends Controller
 {
@@ -31,7 +32,9 @@ class ExhibitionArtworkController extends Controller
                 'artist' => $artwork->artist,
                 'created_at' => $artwork->created_at,
                 'updated_at' => $artwork->updated_at,
-                'artwork_image' => $artwork->artwork_image,
+                'artwork_image' => $artwork->artwork_image
+    ? Storage::url($artwork->artwork_image)
+    : null, 
             ];
         });
     

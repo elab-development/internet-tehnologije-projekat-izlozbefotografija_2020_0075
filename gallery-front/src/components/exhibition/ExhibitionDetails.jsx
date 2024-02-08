@@ -13,8 +13,11 @@ const ExhibitionDetails = () => {
     useEffect(() => {
         const fetchArtworks = async () => {
             try {
-                const response = await axios.get(`api/exhibitions/${id}/artworks`);
+                const response = await axios.get(
+                    `api/exhibitions/${id}/artworks`
+                );
                 setArtworks(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error("Error while fetching artworks.", error);
             }
@@ -24,7 +27,7 @@ const ExhibitionDetails = () => {
             fetchArtworks();
         }
     }, [id]);
-    
+
     return (
         <div>
             <div className="exhibitions-title-container">
@@ -32,21 +35,22 @@ const ExhibitionDetails = () => {
                     {exhibitionDetails ? exhibitionDetails.name : ""}
                 </h2>
             </div>
-    
+
             <div className="artworks-container">
                 {artworks && artworks.length > 0 ? (
                     <>
                         <p className="exhibition-message">
-                            Explore diverse artworks from the current exhibition below!
-                            Each piece tells a unique story, inviting you to dive into
-                            the world of creativity and imagination.
+                            Explore diverse artworks from the current exhibition
+                            below! Each piece tells a unique story, inviting you
+                            to dive into the world of creativity and
+                            imagination.
                         </p>
-    
+
                         {artworks.map((artwork) => (
                             <div key={artwork.id} className="artwork-item">
                                 {artwork.artwork_image ? (
                                     <img
-                                        src={artwork.artwork_image}
+                                        src={`http://127.0.0.1:8000//${artwork.artwork_image}`}
                                         alt={artwork.title}
                                         className="artwork-image"
                                     />
@@ -72,7 +76,6 @@ const ExhibitionDetails = () => {
             </div>
         </div>
     );
-    
 };
 
 export default ExhibitionDetails;
