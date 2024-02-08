@@ -8,7 +8,11 @@ const AdminTickets = () => {
 
     useEffect(() => {
         axios
-            .get("/api/tickets")
+            .get("/api/tickets", {
+                headers: {
+                    Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
+                }
+            })
             .then((response) => {
                 setTicketData(response.data.tickets);
             })

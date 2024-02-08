@@ -121,7 +121,7 @@ const Visit = () => {
                     <div className="weather-container">
                         <h3>
                             <TiWeatherCloudy className="weather-icon" />
-                            {weather.weather[0].main} :{" "}
+                            {weather.weather[0].main}:{" "}
                             <span>{weather.weather[0].description}</span>
                         </h3>
                         <p>

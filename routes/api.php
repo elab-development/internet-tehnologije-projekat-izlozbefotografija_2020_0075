@@ -37,8 +37,9 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', [UserController::class, 'profile']);
-
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('tickets', [TicketController::class, 'store']);
+    Route::get('/tickets', [TicketController::class, 'index']);
 });
 
 Route::post('/newsletters', [NewsletterController::class, 'store']);
@@ -54,11 +55,6 @@ Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
     Route::delete('/showings', [ShowingController::class, 'destroy']);
     Route::get('/showings', [ShowingController::class, 'index']);
     Route::get('/newsletters', [NewsletterController::class, 'index']);
-
 });
 
 Route::post('forgot-password',[AuthController::class,'forgotPassword']);
-
-Route::get('/tickets', [TicketController::class, 'index']);
-
-Route::post('tickets', [TicketController::class, 'store']);

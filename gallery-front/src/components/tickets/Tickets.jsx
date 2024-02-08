@@ -23,7 +23,11 @@ const Tickets = ({ user, exhibitions }) => {
 
     const handleReservationSuccess = () => {
         if (user) {
-            axios.get(`api/tickets?user_id=${user.id}`).then((res) => {
+            axios.get(`api/tickets?user_id=${user.id}`, {
+                headers: {
+                    Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
+                }
+            }).then((res) => {
                 setTickets(res.data.tickets);
             });
         }
@@ -39,7 +43,7 @@ const Tickets = ({ user, exhibitions }) => {
                 <TicketReservation
                     user={user}
                     exhibitions={exhibitions}
-                    reservationSuccess={handleReservationSuccess}
+                    reservationSuccess={handleReservationSuccess}                    
                 />
             </div>
 

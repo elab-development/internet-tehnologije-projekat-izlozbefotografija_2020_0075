@@ -40,6 +40,10 @@ const TicketReservation = ({ user, exhibitions, reservationSuccess }) => {
                 exhibition_id: selectedExhibition,
                 date: selectedDate,
                 person_count: personCount,
+            }, {
+                headers: {
+                    Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
+                }
             })
             .then((res) => {
                 setReservationMessage("Reservation successful!");
