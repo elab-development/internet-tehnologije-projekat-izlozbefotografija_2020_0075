@@ -23,27 +23,31 @@ const Tickets = ({ user, exhibitions }) => {
 
     const handleReservationSuccess = () => {
         if (user) {
-            axios.get(`api/tickets?user_id=${user.id}`, {
-                headers: {
-                    Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
-                }
-            }).then((res) => {
-                setTickets(res.data.tickets);
-            });
+            axios
+                .get(`api/tickets?user_id=${user.id}`, {
+                    headers: {
+                        Authorization:
+                            "Bearer " +
+                            window.sessionStorage.getItem("auth_token"),
+                    },
+                })
+                .then((res) => {
+                    setTickets(res.data.tickets);
+                });
         }
     };
 
     useEffect(() => {
         handleReservationSuccess();
     }, [user]);
-    
+
     return (
         <div className="tickets">
             <div className="ticket-reservation-container">
                 <TicketReservation
                     user={user}
                     exhibitions={exhibitions}
-                    reservationSuccess={handleReservationSuccess}                    
+                    reservationSuccess={handleReservationSuccess}
                 />
             </div>
 
@@ -65,6 +69,7 @@ const Tickets = ({ user, exhibitions }) => {
                         </p>
                         {currentTickets.map((ticket, index) => (
                             <Ticket
+                                id={ticket.id}
                                 key={ticket.id}
                                 number={startIndex + index + 1}
                                 exhibitionTitle={ticket.exhibition.name}
@@ -80,13 +85,19 @@ const Tickets = ({ user, exhibitions }) => {
                 <Button
                     label="PREVIOUS"
                     onClick={() => handlePageChanging(currentPage - 1)}
-                    disabled={currentPage === 1 || !tickets || tickets.length === 0}
+                    disabled={
+                        currentPage === 1 || !tickets || tickets.length === 0
+                    }
                 />
                 {currentPage} / {totalPages}
                 <Button
                     label="NEXT"
                     onClick={() => handlePageChanging(currentPage + 1)}
-                    disabled={currentPage === totalPages || !tickets || tickets.length === 0}
+                    disabled={
+                        currentPage === totalPages ||
+                        !tickets ||
+                        tickets.length === 0
+                    }
                 />
             </div>
 

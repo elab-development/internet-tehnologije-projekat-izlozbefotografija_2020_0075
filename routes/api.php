@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('tickets', [TicketController::class, 'store']);
     Route::get('/tickets', [TicketController::class, 'index']);
+    Route::get('/tickets/{ticketId}/pdf', [TicketController::class, 'generatePDF'])->name('tickets.generatePDF');
 });
 
 Route::post('/newsletters', [NewsletterController::class, 'store']);
@@ -58,3 +59,4 @@ Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
 });
 
 Route::post('forgot-password',[AuthController::class,'forgotPassword']);
+Route::get('/tickets/{id}', [TicketController::class, 'show'])->name('tickets.show');

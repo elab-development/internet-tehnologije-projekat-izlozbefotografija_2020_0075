@@ -6,6 +6,9 @@ use App\Models\Exhibition;
 use App\Models\Ticket;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use App\Http\Resources\TicketResource;
 
 class TicketController extends Controller
 {
@@ -20,6 +23,12 @@ class TicketController extends Controller
         }
 
         return response()->json(['tickets' => $tickets]);
+    }
+
+    public function show($id)
+    {
+        $ticket = Ticket::findOrFail($id);
+        return new TicketResource($ticket);
     }
 
     public function store(Request $request)
@@ -54,6 +63,24 @@ class TicketController extends Controller
 
         $ticket->save();
 
+         // Generise PDF za kartu
+         $pdf = PDF::loadView('ticket', compact('ticket'));
+
+         // Cuva PDF u storage
+         $pdfPath = 'public/tickets/' . $ticket->id . '_confirmation.pdf';
+         Storage::put($pdfPath, $pdf->output());
+
         return response()->json(['message' => 'Ticket reserved successfully.'], 201);
     }
+
+        public function generatePDF($ticketId)
+    {
+        
+        $ticket = Ticket::findOrFail($ticketId);
+
+        $pdf = PDF::loadView('ticket', compact('ticket'));
+        
+        return $pdf->download('ticket_confirmation.pdf');
+    }
+
 }
