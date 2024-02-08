@@ -48,7 +48,18 @@ const Login = ({ addToken, addUser }) => {
                 }
             })
             .catch((err) => {
-                console.log(err);
+                console.error("Error caught:", err);
+                if (err.response && err.response.status === 429) {
+                    setError(
+                        "Too many login attempts. Please try again later."
+                    );
+
+                    setTimeout(() => {
+                        setError(null);
+                    }, 60000);
+                } else {
+                    console.error(err);
+                }
             });
     }
 
@@ -89,6 +100,7 @@ const Login = ({ addToken, addUser }) => {
                         className="login-button"
                         label="LOG IN"
                         type="submit"
+                        disabled={error && error.includes("Too many login attempts")}
                     />
                     <p className="login-question">
                         Don't have an account?{" "}

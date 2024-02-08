@@ -52,6 +52,12 @@ input {
     margin-top: 2rem;
 }
 
+.login-button[disabled]:hover {
+    cursor: default;
+    background-color: inherit;
+    color: inherit;
+  }
+
 .form-container {
     background-image: url("../../../public/images/about-background-image.png");
     background-size: cover;
