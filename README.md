@@ -31,7 +31,7 @@ Reč je o web aplikaciji galerije koja organizuje izložbe slika. Aplikacija ima
 - MySQL
 
 # Pokretanje aplikacije
-Najpre je potrebno pookrenuti Apache i MySQL u okviru XAMPP-a.
+Najpre je potrebno pokrenuti Apache i MySQL u okviru XAMPP-a.
 Zatim je potrebno pokrenuti redom sledeće komande:
 ### Kloniranje
 - `git clone https://github.com/elab-development/internet-tehnologije-projekat-izlozbefotografija_2020_0075.git`
