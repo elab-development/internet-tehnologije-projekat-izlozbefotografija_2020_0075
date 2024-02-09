@@ -35,6 +35,7 @@ Najpre je potrebno pokrenuti Apache i MySQL u okviru XAMPP-a.
 Zatim je potrebno pokrenuti redom sledeće komande:
 ### Kloniranje
 - `git clone https://github.com/elab-development/internet-tehnologije-projekat-izlozbefotografija_2020_0075.git`
+- `cd internet-tehnologije-projekat-izlozbefotografija_2020_0075`
 - `git checkout master`
 ### Backend
 - `copy .env.example .env`
