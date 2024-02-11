@@ -70,7 +70,7 @@ class TicketController extends Controller
          $pdfPath = 'public/tickets/' . $ticket->id . '_confirmation.pdf';
          Storage::put($pdfPath, $pdf->output());
 
-        return response()->json(['message' => 'Ticket reserved successfully.'], 201);
+         return response()->json(['message' => 'Ticket reserved successfully.', 'ticketId' => $ticket->id], 201);
     }
 
         public function generatePDF($ticketId)

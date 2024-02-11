@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 import "./tickets.css";
 import axios from "axios";
+import emailjs from 'emailjs-com';
+import QRCode from 'qrcode.react';
+
 
 const TicketReservation = ({ user, exhibitions, reservationSuccess }) => {
     const [selectedExhibition, setSelectedExhibition] = useState("");
     const [selectedDate, setSelectedDate] = useState("");
     const [personCount, setPersonCount] = useState(1);
     const [reservationMessage, setReservationMessage] = useState(null);
+    const [qrCodeUrl, setQrCodeUrl] = useState("");
+
+    console.log(exhibitions);
 
     const handleExhibitionChange = (event) => {
+        setQrCodeUrl("");
         setReservationMessage(null);
         setSelectedExhibition(event.target.value);
     };
 
     const handleDateChange = (event) => {
+        setQrCodeUrl("");
         setReservationMessage(null);
         setSelectedDate(event.target.value);
     };
 
     const handlePersonCountChange = (event) => {
+        setQrCodeUrl("");
         setReservationMessage(null);
         setPersonCount(parseInt(event.target.value, 10));
     };
@@ -47,6 +56,30 @@ const TicketReservation = ({ user, exhibitions, reservationSuccess }) => {
             })
             .then((res) => {
                 setReservationMessage("Reservation successful!");
+
+                const selectedExhibitionObj = exhibitions.find(exhibition => exhibition.id === parseInt(selectedExhibition, 10));
+                const exhibitionName = selectedExhibitionObj ? selectedExhibitionObj.name : 'Unknown Exhibition';
+
+                const qrCodeUrl = `http://localhost:3000/tickets/${res.data.ticketId}`;
+                setQrCodeUrl(qrCodeUrl);
+                console.log(qrCodeUrl);
+
+                const templateParams = {
+                    to_email: user.email,
+                    username: user.username,
+                    exhibition: exhibitionName,
+                    date: selectedDate,
+                    personCount: personCount,
+                };
+
+                emailjs.send('SERVICE_ID', 'TEMPLATE_ID', templateParams, 'PUBLIC_KEY')
+                    .then((response) => {
+                        console.log('Email sent successfully:', response);
+                    })
+                    .catch((error) => {
+                        console.error('Error sending email:', error);
+                    });
+
                 reservationSuccess();
             })
             .catch((error) => {
@@ -72,42 +105,42 @@ const TicketReservation = ({ user, exhibitions, reservationSuccess }) => {
 
                 <div className="form-field">
                     <label>Exhibition:</label>
-                        <select
-                            onChange={handleExhibitionChange}
-                            value={selectedExhibition}
-                        >
-                            <option value="" disabled>
-                                Select an exhibition
-                            </option>
-                            {exhibitions &&
-                                exhibitions.map((exhibition) => (
-                                    <option
-                                        key={exhibition.id}
-                                        value={exhibition.id}
-                                    >
-                                        {exhibition.name}
-                                    </option>
-                                ))}
-                        </select>
+                    <select
+                        onChange={handleExhibitionChange}
+                        value={selectedExhibition}
+                    >
+                        <option value="" disabled>
+                            Select an exhibition
+                        </option>
+                        {exhibitions &&
+                            exhibitions.map((exhibition) => (
+                                <option
+                                    key={exhibition.id}
+                                    value={exhibition.id}
+                                >
+                                    {exhibition.name}
+                                </option>
+                            ))}
+                    </select>
                 </div>
 
                 <div className="form-field">
                     <label>Date:</label>
-                        <input
-                            type="date"
-                            value={selectedDate}
-                            onChange={handleDateChange}
-                        />
+                    <input
+                        type="date"
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                    />
                 </div>
 
                 <div className="form-field">
                     <label>Number of Persons:</label>
-                        <input
-                            type="number"
-                            value={personCount}
-                            onChange={handlePersonCountChange}
-                            min="1"
-                        />
+                    <input
+                        type="number"
+                        value={personCount}
+                        onChange={handlePersonCountChange}
+                        min="1"
+                    />
                 </div>
 
                 <div className="form-btn">
@@ -127,6 +160,12 @@ const TicketReservation = ({ user, exhibitions, reservationSuccess }) => {
                 >
                     {reservationMessage}
                 </p>
+            )}
+
+            {qrCodeUrl && (
+                <div className="qr-code-container">
+                    <QRCode value={qrCodeUrl} />
+                </div>
             )}
         </div>
     );
