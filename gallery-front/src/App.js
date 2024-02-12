@@ -17,6 +17,7 @@ import AdminExhibitions from "./components/admin/AdminExhibitions.jsx";
 import AdminNewsletter from "./components/admin/AdminNewsletter.jsx";
 import AdminArtworks from "./components/admin/AdminArtworks.jsx";
 import AdminTickets from "./components/admin/AdminTickets.jsx";
+import SpecificTicket from "./components/ticket/SpecificTicket.jsx";
 
 function App() {
     const [token, setToken] = useState();
@@ -112,6 +113,7 @@ function App() {
                     <Route path="adminArtworks" element={<AdminArtworks />} />
                     <Route path="adminTickets" element={<AdminTickets />} />
                 </Route>
+                <Route path="tickets/:id" element={<SpecificTicket />} />
             </Routes>
         </BrowserRouter>
     );

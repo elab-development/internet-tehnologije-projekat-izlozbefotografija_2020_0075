@@ -45,9 +45,25 @@
 .person-count {
     display: flex;
     align-items: center;
-    margin-left: auto;
+    margin-left: 2rem;
 }
 
 .person-count .icon {
     margin-right: 5px;
+}
+
+.qr-details {
+    background-color: var(--black);
+    width: 100vw;
+    height: 100vh;
+    color: var(--white);
+    font-family: var(--text);
+    font-size: 140%;
+    font-weight: 300;
+}
+
+.ticket-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
